@@ -32,11 +32,48 @@ export const notesApiSlice = apiSlice.injectEndpoints({
         } return [{ type: 'Note', id: 'LIST' }];
       },
     }),
+    addNewNote: builder.mutation({
+      query: (initialNote) => ({
+        url: '/notes',
+        method: 'POST',
+        body: {
+          ...initialNote,
+        },
+      }),
+      invalidatesTags: [
+        { type: 'Note', id: 'LIST' },
+      ],
+    }),
+    updateNote: builder.mutation({
+      query: (initialNote) => ({
+        url: '/notes',
+        method: 'PATCH',
+        body: {
+          ...initialNote,
+        },
+      }),
+      invalidatesTags: (arg) => [
+        { type: 'Note', id: arg.id },
+      ],
+    }),
+    deleteNote: builder.mutation({
+      query: ({ id }) => ({
+        url: '/notes',
+        method: 'DELETE',
+        body: { id },
+      }),
+      invalidatesTags: (arg) => [
+        { type: 'Note', id: arg.id },
+      ],
+    }),
   }),
 });
 
 export const {
   useGetNotesQuery,
+  useAddNewNoteMutation,
+  useUpdateNoteMutation,
+  useDeleteNoteMutation,
 } = notesApiSlice;
 
 // returns the query result object
@@ -45,7 +82,7 @@ export const selectNotesResult = notesApiSlice.endpoints.getNotes.select();
 // creates memoized selector
 const selectNotesData = createSelector(
   selectNotesResult,
-  (notesResult) => notesResult.data, // normalized state object with ids & entities
+  (notesResult) => (notesResult.data), // normalized state object with ids & entities
 );
 
 // getSelectors creates these selectors and we rename them with aliases using destructuring

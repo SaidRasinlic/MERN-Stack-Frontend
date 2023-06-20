@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* || VARIABLES */
+
 :root {
   /* COLORS */
   --BGCOLOR: #0f172a;
@@ -14,32 +22,8 @@
   --STATUS-OPEN: firebrick;
   --TABLE-BGCOLOR: #fff;
   --TABLE-COLOR: #000;
+  --INPUT-INVALID: #f00;
 }
-
-html {
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-body {
-  margin: 0 !important;
-  padding: 0 !important;
-  font-family: 'Nunito', sans-serif;
-  min-height: 100vh;
-  background-color: var(--BGCOLOR);
-  color: var(--COLOR);
-  background-image: url('../images/background.jpg');
-  background-size: cover;
-  background-position: top right;
-  background-blend-mode: multiply;
-}
-
-/* || VARIABLES */
 
 /* || UTILITY CLASSES */
 .errmsg {
@@ -75,6 +59,17 @@ body {
 }
 
 /* || GENERAL STYLES */
+
+body {
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+  background-color: var(--BGCOLOR);
+  color: var(--COLOR);
+  background-image: url('../images/background.jpg');
+  background-size: cover;
+  background-position: top right;
+  background-blend-mode: multiply;
+}
 
 input,
 button,
@@ -150,6 +145,10 @@ a:focus-visible {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+}
+
+.dash-header__container--small {
+  max-width: 800px;
 }
 
 .dash-header__nav {
@@ -290,8 +289,8 @@ tr {
 }
 
 .form__input--incomplete {
-  border: 1px solid red;
-  outline: 1px solid red;
+  border: 1px solid var(--INPUT-INVALID);
+  outline: 1px solid var(--INPUT-INVALID);
 }
 
 .form__checkbox {
@@ -323,6 +322,10 @@ tr {
   display: flex;
   flex-flow: column nowrap;
   gap: 0.5em;
+}
+
+.form__label-text {
+  display: flex;
 }
 
 @media screen and (max-width: 400px) {
