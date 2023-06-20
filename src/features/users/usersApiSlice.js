@@ -5,13 +5,12 @@ const usersAdapter = createEntityAdapter({});
 
 const initialState = usersAdapter.getInitialState();
 
-const usersApiSlice = apiSlice.injectEndpoints({
+export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUsers: builder.query({
-      query: '/users',
+      query: () => '/users',
       validateStatus: (response, result) => response.result === 200 && !result.isError,
-      keepUnusedDataFor: 5,
-      transformErrorResponse: (responseData) => {
+      transformResponse: (responseData) => {
         const loadedUsers = responseData.map((user) => {
           user.id = user._id;
           return user;
@@ -28,10 +27,47 @@ const usersApiSlice = apiSlice.injectEndpoints({
         return [{ type: 'User', id: 'LIST' }];
       },
     }),
+    addNewUser: builder.mutation({
+      query: (initialUserData) => ({
+        url: '/users',
+        method: 'POST',
+        body: {
+          ...initialUserData,
+        },
+      }),
+      invalidatesTags: { type: 'User', id: 'LIST' },
+    }),
+    updateUser: builder.mutation({
+      query: (initialUserData) => ({
+        url: '/users',
+        method: 'PATCH',
+        body: {
+          ...initialUserData,
+        },
+      }),
+      invalidatesTags: (arg) => [
+        { type: 'User', id: arg.id },
+      ],
+    }),
+    deleteUser: builder.mutation({
+      query: ({ id }) => ({
+        url: '/users',
+        method: 'DELETE',
+        body: { id },
+      }),
+      invalidatesTags: (arg) => [
+        { type: 'User', id: arg.id },
+      ],
+    }),
   }),
 });
 
-export const { useGetUsersQuery } = usersApiSlice;
+export const {
+  useGetUsersQuery,
+  useAddNewUserMutation,
+  useUpdateUserMutation,
+  useDeleteUserMutation,
+} = usersApiSlice;
 
 // returns the query result object
 export const selectUsersResult = usersApiSlice.endpoints.getUsers.select();
@@ -49,5 +85,3 @@ export const {
   selectIds: selectUserIds,
   // Pass in a selector that returns the users slice of state
 } = usersAdapter.getSelectors((state) => selectUsersData(state) ?? initialState);
-
-export default usersApiSlice;
