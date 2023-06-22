@@ -64,7 +64,7 @@ const NewNoteForm = ({ users }) => {
           <h2>New Note</h2>
           <div className="form__action-buttons">
             <button
-              type="button"
+              type="submit"
               className="icon-button"
               title="Save"
               disabled={!canSave}
