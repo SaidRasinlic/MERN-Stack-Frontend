@@ -1,6 +1,7 @@
 import { Outlet, Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
+import PulseLoader from 'react-spinners/PulseLoader';
 import { useRefreshMutation } from './authApiSlice';
 import usePersist from '../../hooks/usePersist';
 import { selectCurrentToken } from './authSlice';
@@ -25,9 +26,10 @@ const PersistLogin = () => {
       const verifyRefreshToken = async () => {
         console.log('verifying refresh token');
         try {
-          const response = await refresh();
-          const { accessToken } = response.data;
-          console.log(accessToken);
+          // const response =
+          await refresh();
+          // const { accessToken } = response.data;
+          // console.log(accessToken);
           setTrueSuccess(true);
         } catch (err) {
           console.error(err);
@@ -46,15 +48,20 @@ const PersistLogin = () => {
     content = <Outlet />;
   } else if (isLoading) { // persist: yes, token: no
     console.log('loading');
-    content = <p>Loading...</p>;
+    content = <PulseLoader color="#FFF" />;
   } else if (isError) { // persist: yes, token: no
     console.log('error');
     content = (
       <p className="errmsg">
-        {error.data?.message}
+        {`${error?.data?.message} - `}
         <Link to="/login">Please login again</Link>
         .
       </p>
+      // <p className="errmsg">
+      //   {`${error?.data?.message} - `}
+      //   <Link to="/login">Please login again</Link>
+      //   .
+      // </p>
     );
   } else if (isSuccess && trueSuccess) { // persist: yes, token: yes
     console.log('success');
@@ -67,4 +74,5 @@ const PersistLogin = () => {
 
   return content;
 };
+
 export default PersistLogin;
