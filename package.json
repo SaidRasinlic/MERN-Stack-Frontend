@@ -18,6 +18,9 @@
     "react-scripts": "^5.0.1",
     "react-spinners": "^0.13.8"
   },
+    "engines" : { 
+    "node" : ">=16.0.0" 
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
