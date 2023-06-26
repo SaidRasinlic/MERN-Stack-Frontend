@@ -5,7 +5,7 @@
 
 ## Link to the Backend
 
-- Check out the MERN-Stack-Backend[repository](https://github.com/SaidRasinlic/MERN-Stack-Backend.git)
+- Check out the MERN-Stack-Backend [repository](https://github.com/SaidRasinlic/MERN-Stack-Backend.git)
 
 ## Built with
 
