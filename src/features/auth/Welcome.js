@@ -13,6 +13,7 @@ const Welcome = () => {
 
       <h1>
         Welcome
+        {' '}
         {username}
         !
       </h1>
