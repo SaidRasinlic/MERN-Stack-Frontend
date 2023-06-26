@@ -10,9 +10,9 @@
 
 :root {
   /* COLORS */
-  --BGCOLOR: #0f172a;
-  --BORDER-COLOR: #fff;
-  --COLOR: #fff;
+  --BGCOLOR: #0F172A;
+  --BORDER-COLOR: #FFF;
+  --COLOR: #FFF;
   --ERROR: firebrick;
   --INACTIVE: lightgray;
   --LINK-COLOR: whitesmoke;
@@ -20,9 +20,9 @@
   --NOTE-BGCOLOR: hsla(240, 64%, 27%, 0.65);
   --STATUS-COMPLETE: limegreen;
   --STATUS-OPEN: firebrick;
-  --TABLE-BGCOLOR: #fff;
+  --TABLE-BGCOLOR: #FFF;
   --TABLE-COLOR: #000;
-  --INPUT-INVALID: #f00;
+  --INPUT-INVALID: #F00;
 }
 
 /* || UTILITY CLASSES */
@@ -32,6 +32,11 @@
   color: var(--ERROR);
   padding: 0.25em;
   margin-bottom: 0.5em;
+}
+
+.errmsg a:any-link {
+  color: var(--ERROR);
+  text-decoration: underline;
 }
 
 .nowrap {
@@ -89,8 +94,7 @@ a {
   text-decoration: none;
 }
 
-a,
-a:visited {
+a:any-link {
   color: var(--LINK-COLOR);
 }
 
@@ -126,7 +130,7 @@ a:focus-visible {
 }
 
 .welcome a::before {
-  content: "➜ ";
+  content: "➜ "
 }
 
 /* || DASH HEADER, CONTAINER & FOOTER */
@@ -249,6 +253,7 @@ tr {
   color: var(--STATUS-COMPLETE);
 }
 
+
 /* || FORM - GENERAL */
 
 .form {
@@ -282,6 +287,7 @@ tr {
 .form__submit-button {
   padding: 0.5em;
   border-radius: 15px;
+  width: 100%;
 }
 
 .form__input--text {
@@ -324,10 +330,6 @@ tr {
   gap: 0.5em;
 }
 
-.form__label-text {
-  display: flex;
-}
-
 @media screen and (max-width: 400px) {
   h1 {
     font-size: 2rem;
@@ -342,7 +344,9 @@ tr {
   }
 }
 
+
 @media screen and (min-width: 768px) {
+
   body {
     font-size: 1.25rem;
   }
@@ -366,7 +370,7 @@ tr {
   .note__created,
   .note__updated,
   .note__username {
-    display: block;
+    display: block
   }
 
   .form__action-buttons {
