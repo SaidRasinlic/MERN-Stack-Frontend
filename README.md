@@ -3,6 +3,9 @@
 > This is Front-End UI that is connected to the Back-End RoR API. This app represents 1/2 (one half) of the full application required to properly work, so please make sure you connect it properly to the Back-End.
 
 
+## Live Demo
+[Live Demo Link](https://mern-technotes-frontend.onrender.com/)
+
 ## Link to the Backend
 
 - Check out the MERN-Stack-Backend [repository](https://github.com/SaidRasinlic/MERN-Stack-Backend.git)
